@@ -63,13 +63,13 @@ const productQuery = `
   let date = new Date(data.createdAt);
   
   return (
-    <>
-     <h1 className='text-3xl font-bold underline'>{data.title}</h1>
+    <div className='flex justify-center items-center flex-col'>
+     <h1 className='text-3xl font-bold underline text-red-400'>{data.title}</h1>
      <p>{data.description}</p>
      <p>{date.toDateString()}</p>
      <p>{data.totalInventory}</p>
      <img src={data.images.nodes[0].src} width={500}/>
-    </>
+    </div>
   )
 }
 
