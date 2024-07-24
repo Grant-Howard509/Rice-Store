@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
+import './index.css'
 
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
+
+const publicKey = import.meta.env.VITE_SHOPIFY_PUBLIC_KEY;
 
 const client = createStorefrontApiClient({
   storeDomain: 'https://ricebandmerch.myshopify.com/',
   apiVersion: '2024-04',
-  publicAccessToken: 'PUBLIC_KEY_HERE',
+  publicAccessToken: `${publicKey}`,
 });
 
 
@@ -64,7 +64,7 @@ const productQuery = `
   
   return (
     <>
-     <h1>{data.title}</h1>
+     <h1 className='text-3xl font-bold underline'>{data.title}</h1>
      <p>{data.description}</p>
      <p>{date.toDateString()}</p>
      <p>{data.totalInventory}</p>
