@@ -2,8 +2,8 @@
 
 export function Home() {
     return (
-        <div className="flex justify-center">
-            HOME PAGE
+        <div className="background-red h-screen w-96 ">
+            hello
         </div>
     );
 }
