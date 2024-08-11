@@ -2,8 +2,8 @@
 
 export function Home() {
     return (
-        <div className="background-red h-screen w-96 ">
-            hello
+        <div className="bg-slate-950 h-screen w-full">
+            yes
         </div>
     );
 }
