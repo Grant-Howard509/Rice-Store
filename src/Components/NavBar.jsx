@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
 
-export function NavBar() {
+export function NavBar({color}) {
 
     const openNav = () => {
         let sideBar = document.getElementById('sideBar');
@@ -19,8 +18,8 @@ export function NavBar() {
     }
 
     return (
-        <nav className="lg:mr-16 lg:ml-16 mr-0 ml-0 sticky top-4">
-            <div className="flex justify-between font-bebas text-xl lg:text-2xl p-4">
+        <nav className={`lg:mr-16 lg:ml-16 mr-0 ml-0 sticky top-4 ${color} Z-10`} id="nav-container">
+            <div className={`flex justify-between font-bebas text-xl lg:text-2xl p-4 ${color}`}>
 
                 <div onClick={openNav} className="lg:hidden cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
@@ -37,7 +36,7 @@ export function NavBar() {
                             </svg>
                         </div>
 
-                        <ul className=" lg:hidden flex flex-col gap-y-9 text-3xl">
+                        <ul className={`lg:hidden flex flex-col gap-y-9 text-3xl ${color}`}>
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Music</a></li>
                             <li><a href="#">Tour</a></li>
@@ -48,7 +47,7 @@ export function NavBar() {
                     </div>
                 </div>
 
-                <ul className=" hidden lg:flex flex-row gap-x-2.5">
+                <ul className={`hidden lg:flex flex-row gap-x-2.5 ${color}`}>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Music</a></li>
                     <li><a href="#">Tour</a></li>
@@ -57,7 +56,7 @@ export function NavBar() {
                     <Link to='/shop'>Shop</Link>
                 </ul>
 
-                <div className="lg:text-4xl text-3xl lg:basis-1/4 lg:ml-28">
+                <div className={`lg:text-4xl text-3xl lg:basis-1/4 lg:ml-28 ${color}`}>
                     <h1 className="cursor-pointer lg:w-32">Rice Band</h1>
                 </div>
 

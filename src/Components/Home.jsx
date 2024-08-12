@@ -1,9 +1,12 @@
+import { forwardRef } from "react";
 
 
-export function Home() {
+const Home = forwardRef(({}, ref) => {
     return (
-        <div className="bg-slate-950 h-screen w-full">
+        <div className="bg-black h-screen w-full p-50" ref={ref}>
             yes
         </div>
     );
-}
+});
+
+export default Home;
