@@ -1,34 +1,45 @@
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 
 export function NavBar({color}) {
 
-    const openNav = () => {
-        let sideBar = document.getElementById('sideBar');
-        let sideNav = document.getElementById('sideNav');
-        sideBar.style.width = "100%";
-        sideNav.style.width = "49.2%";
-    }
-    
-    const closeNav = () => {
-        let sideBar = document.getElementById('sideBar');
-        let sideNav = document.getElementById('sideNav');
-        sideBar.style.width = "0%";
-        sideNav.style.width = "0%";
-    }
+    const [isSideBarOpen, setSideBar] = useState(false);
+
+    const toggleNav = () => {
+        setSideBar(!isSideBarOpen);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            console.log('handleResize');
+            if (window.innerWidth >= 1024) {
+                setSideBar(false);
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [isSideBarOpen]);
 
     return (
-        <nav className={`lg:mr-16 lg:ml-16 mr-0 ml-0 sticky top-4 ${color} Z-10`} id="nav-container">
-            <div className={`flex justify-between font-bebas text-xl lg:text-2xl p-4 ${color}`}>
+        <nav className={"lg:mr-16 lg:ml-16 mr-0 ml-0 sticky top-4 Z-10"} id="nav-container">
+            <div className={"flex justify-between font-bebas text-xl lg:text-2xl p-4"}>
 
-                <div onClick={openNav} className="lg:hidden cursor-pointer">
+                {/* Hamburger Icon */}
+                <div onClick={toggleNav} className={`lg:hidden cursor-pointer ${color} duration-500`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" strokeLinejoin="round"/>
                     </svg>
                 </div>
 
-                <div onClick={closeNav} id="sideBar" className="fixed top-0 left-0 bg-transparent w-0 h-full overflow-x-hidden duration-500 z-10">
-                    <div id="sideNav" className="fixed top-0 left-0 w-0 h-full flex justify-center items-center overflow-x-hidden duration-500 z-10 bg-slate-100">
+
+                {/* Sidebar */}
+                <div onClick={toggleNav} id="sideBar" className={`fixed top-0 left-0 bg-transparent w-0 h-full overflow-x-hidden ${!isSideBarOpen ? 'duration-500' : 'duration-500 w-full'} z-10`}>
+                    <div id="sideNav" className={`fixed top-0 left-0 w-0 h-full flex justify-center items-center overflow-x-hidden ${!isSideBarOpen ? 'duration-500' : 'duration-500 w-1/2'} z-10 bg-white border-r-2 border-black`}>
 
                         <div className="absolute top-0 left-0 pt-8 pl-4 ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" className="cursor-pointer">
@@ -36,7 +47,7 @@ export function NavBar({color}) {
                             </svg>
                         </div>
 
-                        <ul className={`lg:hidden flex flex-col gap-y-9 text-3xl ${color}`}>
+                        <ul className="lg:hidden flex flex-col gap-y-9 text-3xl">
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Music</a></li>
                             <li><a href="#">Tour</a></li>
@@ -47,7 +58,8 @@ export function NavBar({color}) {
                     </div>
                 </div>
 
-                <ul className={`hidden lg:flex flex-row gap-x-2.5 ${color}`}>
+                {/* Main navigation */}
+                <ul className={`hidden lg:flex flex-row gap-x-2.5 ${color} duration-300`}>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Music</a></li>
                     <li><a href="#">Tour</a></li>
@@ -56,11 +68,13 @@ export function NavBar({color}) {
                     <Link to='/shop'>Shop</Link>
                 </ul>
 
-                <div className={`lg:text-4xl text-3xl lg:basis-1/4 lg:ml-28 ${color}`}>
+                {/* Band Logo */}
+                <div className={`lg:text-4xl text-3xl lg:basis-1/4 lg:ml-28 ${color} duration-300`}>
                     <h1 className="cursor-pointer lg:w-32">Rice Band</h1>
                 </div>
 
-                <div className="cursor-pointer">
+                {/* Cart Icon */}
+                <div className={`cursor-pointer ${color} duration-300`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
                         <g fill="none" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" d="M8 12V8a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4"/>
