@@ -80,29 +80,47 @@ export function NavBar({color}) {
                 </div>
 
                 {/* Main navigation */}
-                <ul className={`hidden xl:flex flex-row gap-x-2.5 ${color} duration-300`}>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Music</a></li>
-                    <li><a href="#">Tour</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <Link to='/shop'>Shop</Link>
-                </ul>
+                {isShop ? 
+                        (
+                            <ul className={`hidden xl:flex flex-row gap-x-2.5 ${color} duration-300`}>
+                                <Link to='/'>Home</Link>
+                                <Link to='/'>Music</Link>
+                                <Link to='/'>Tour</Link>
+                                <Link to='/'>About</Link>
+                                <Link to='/'>Contact</Link>
+                                <Link to='/shop'>Shop</Link>
+                            </ul>
+                        ) :
+
+                        (
+                            <ul className={`hidden xl:flex flex-row gap-x-2.5 ${color} duration-300`}>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Music</a></li>
+                                <li><a href="#">Tour</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <Link to='/shop'>Shop</Link>
+                            </ul>
+                        )}
 
                 {/* Band Logo */}
-                <div className={`lg:text-4xl text-4xl xl:basis-1/4 ${color} duration-300`}>
-                    <h1 className="cursor-pointer lg:w-30">Rice Band</h1>
+                <div className={`xl:hidden lg:text-4xl text-4xl xl:basis-1/4  ${color} duration-300`}>
+                    <Link to='/'>
+                        <h1 className="cursor-pointer lg:w-30">Rice Band</h1>
+                    </Link>
                 </div>
 
                 {/* Cart Icon */}
-                <div className={`cursor-pointer ${color} duration-300`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                        <g fill="none" stroke="currentColor" strokeWidth="2">
-                            <path strokeLinecap="round" d="M8 12V8a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4"/>
-                            <path d="M3.694 12.668c.145-1.741.218-2.611.792-3.14C5.06 9 5.934 9 7.681 9h8.639c1.746 0 2.62 0 3.194.528c.574.528.647 1.399.792 3.14l.514 6.166c.084 1.013.126 1.52-.17 1.843c-.298.323-.806.323-1.824.323H5.174c-1.017 0-1.526 0-1.823-.323c-.297-.323-.255-.83-.17-1.843z"/>
-                        </g>
-                    </svg>
-                </div>
+                <Link to='/shop'>                
+                    <div className={`cursor-pointer ${color} duration-300`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" d="M8 12V8a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4"/>
+                                <path d="M3.694 12.668c.145-1.741.218-2.611.792-3.14C5.06 9 5.934 9 7.681 9h8.639c1.746 0 2.62 0 3.194.528c.574.528.647 1.399.792 3.14l.514 6.166c.084 1.013.126 1.52-.17 1.843c-.298.323-.806.323-1.824.323H5.174c-1.017 0-1.526 0-1.823-.323c-.297-.323-.255-.83-.17-1.843z"/>
+                            </g>
+                        </svg>
+                    </div>
+                </Link>
             </div>
         </nav>
     );
