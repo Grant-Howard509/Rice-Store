@@ -51,7 +51,7 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className='relative bg-black' id='wrapper'>
+    <div className='relative' id='wrapper'>
       <NavBar color={color}/>
 
       <Routes>

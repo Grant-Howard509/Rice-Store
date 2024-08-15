@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -13,7 +13,7 @@ export function NavBar({color}) {
     useEffect(() => {
         const handleResize = () => {
             console.log('handleResize');
-            if (window.innerWidth >= 1024) {
+            if (window.innerWidth >= 1280) {
                 setSideBar(false);
             }
         }
@@ -26,11 +26,13 @@ export function NavBar({color}) {
     }, [isSideBarOpen]);
 
     return (
-        <nav className={"lg:mr-16 lg:ml-16 mr-0 ml-0 sticky top-4 Z-10"} id="nav-container">
-            <div className={"flex justify-between font-bebas text-xl lg:text-2xl p-4"}>
+        // Old nav styling:
+        // sticky top-4 lg:mr-16 lg:ml-16
+        <nav className={"lg:pr-4 lg:pl-4 xl:pr-12 xl:pl-12 fixed top-0 w-full z-10"} id="nav-container">
+            <div className={"flex justify-between font-bebas text-xl lg:text-3xl p-4"}>
 
                 {/* Hamburger Icon */}
-                <div onClick={toggleNav} className={`lg:hidden cursor-pointer ${color} duration-500`}>
+                <div onClick={toggleNav} className={`xl:hidden cursor-pointer ${color} duration-500`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" strokeLinejoin="round"/>
                     </svg>
@@ -47,7 +49,8 @@ export function NavBar({color}) {
                             </svg>
                         </div>
 
-                        <ul className="lg:hidden flex flex-col gap-y-9 text-3xl">
+                        {/* xl:hidden */}
+                        <ul className="flex flex-col gap-y-9 text-3xl">
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Music</a></li>
                             <li><a href="#">Tour</a></li>
@@ -59,7 +62,7 @@ export function NavBar({color}) {
                 </div>
 
                 {/* Main navigation */}
-                <ul className={`hidden lg:flex flex-row gap-x-2.5 ${color} duration-300`}>
+                <ul className={`hidden xl:flex flex-row gap-x-2.5 ${color} duration-300`}>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Music</a></li>
                     <li><a href="#">Tour</a></li>
@@ -69,7 +72,7 @@ export function NavBar({color}) {
                 </ul>
 
                 {/* Band Logo */}
-                <div className={`lg:text-4xl text-3xl lg:basis-1/4 lg:ml-28 ${color} duration-300`}>
+                <div className={`lg:text-4xl text-4xl xl:basis-1/4 ${color} duration-300`}>
                     <h1 className="cursor-pointer lg:w-32">Rice Band</h1>
                 </div>
 
