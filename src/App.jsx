@@ -1,76 +1,66 @@
-import { useState, useEffect } from 'react'
 import './index.css'
-
-import { createStorefrontApiClient } from '@shopify/storefront-api-client';
-
-const publicKey = import.meta.env.VITE_SHOPIFY_PUBLIC_KEY;
-
-const client = createStorefrontApiClient({
-  storeDomain: 'https://ricebandmerch.myshopify.com/',
-  apiVersion: '2024-04',
-  publicAccessToken: `${publicKey}`,
-});
+import React, { useEffect, useRef, useState } from 'react';
+import  { NavBar } from './Components/NavBar'
+import Home  from './Components/Home'
+import Shop from './Components/Shop'
+import { Route, Routes, useLocation} from 'react-router-dom'
 
 
-function App() {
+export default function App() {
+  const [color, setColor] = useState('text-white');
+  const homeRef = useRef();
+  const shopRef = useRef();
+  const location = useLocation();
+  let refList = [homeRef, shopRef];
+  
+  useEffect(() => {
+    const options = {
+      root: null,
+      threshold: [0.03],
+    };
 
-const [data, setData] = useState(null);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) {
+          setColor('text-black');
+        }else {
+          setColor('text-white');
+;        }
+      });
+    }, options);
 
+    const initObserver = () => {
+      for (let ref of refList) {
+        if (ref.current) {
+          observer.observe(ref.current);
+        }
+      }
+    };
 
-const productQuery = `
-  {
-    product(id: "gid://shopify/Product/9563122499893") {
-      title
-      id
-      handle
-      description
-      createdAt
-      totalInventory
-      images(first: 1) {
-        nodes {
-          src
+    const timer = setTimeout(initObserver, 10);
+
+    return () => {
+      clearTimeout(timer);
+      
+      for (let ref of refList) {
+        if (ref.current) {
+          observer.unobserve(ref.current);
         }
       }
     }
-  }
-  `;
+  }, [location.pathname]);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await client.request(productQuery);
-        setData(response.data.product);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if(error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  let date = new Date(data.createdAt);
-  
   return (
-    <div className='flex justify-center items-center flex-col'>
-     <h1 className='text-3xl font-bold underline text-red-400'>{data.title}</h1>
-     <p>{data.description}</p>
-     <p>{date.toDateString()}</p>
-     <p>{data.totalInventory}</p>
-     <img src={data.images.nodes[0].src} width={500}/>
+    <div className='relative' id='wrapper'>
+      <NavBar color={color}/>
+
+      <Routes>
+        <Route path='/' element={<Home ref={homeRef} key='home'/>} />
+        <Route path='/shop' element={<Shop ref={shopRef} key='shop'/>} />
+      </Routes>
+
+      <section className='bg-white h-screen w-full p-50' id='test-section'></section>
     </div>
   )
 }
 
-export default App
