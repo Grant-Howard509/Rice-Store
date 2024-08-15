@@ -28,7 +28,7 @@ export function NavBar({color}) {
     return (
         // Old nav styling:
         // sticky top-4 lg:mr-16 lg:ml-16
-        <nav className={"lg:pr-4 lg:pl-4 xl:pr-12 xl:pl-12 fixed top-0 w-full z-10"} id="nav-container">
+        <nav className={"xl:pr-12 xl:pl-12 fixed top-0 w-full z-10"} id="nav-container">
             <div className={"flex justify-between font-bebas text-xl lg:text-3xl p-4"}>
 
                 {/* Hamburger Icon */}
@@ -43,7 +43,7 @@ export function NavBar({color}) {
                 <div onClick={toggleNav} id="sideBar" className={`fixed top-0 left-0 bg-transparent w-0 h-full overflow-x-hidden ${!isSideBarOpen ? 'duration-500' : 'duration-500 w-full'} z-10`}>
                     <div id="sideNav" className={`fixed top-0 left-0 w-0 h-full flex justify-center items-center overflow-x-hidden ${!isSideBarOpen ? 'duration-500' : 'duration-500 w-1/2'} z-10 bg-white border-r-2 border-black`}>
 
-                        <div className="absolute top-0 left-0 pt-8 pl-4 ">
+                        <div className="absolute top-4 left-4 ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" className="cursor-pointer">
                                 <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
@@ -73,7 +73,7 @@ export function NavBar({color}) {
 
                 {/* Band Logo */}
                 <div className={`lg:text-4xl text-4xl xl:basis-1/4 ${color} duration-300`}>
-                    <h1 className="cursor-pointer lg:w-32">Rice Band</h1>
+                    <h1 className="cursor-pointer lg:w-30">Rice Band</h1>
                 </div>
 
                 {/* Cart Icon */}
