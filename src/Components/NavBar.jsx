@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 export function NavBar({color}) {
 
     const [isSideBarOpen, setSideBar] = useState(false);
+    const location = useLocation();
+    const [isShop, setIsShop] = useState(false);
+    let pathname = location.pathname;
 
     const toggleNav = () => {
         setSideBar(!isSideBarOpen);
@@ -12,7 +15,6 @@ export function NavBar({color}) {
 
     useEffect(() => {
         const handleResize = () => {
-            console.log('handleResize');
             if (window.innerWidth >= 1280) {
                 setSideBar(false);
             }
@@ -25,9 +27,11 @@ export function NavBar({color}) {
         };
     }, [isSideBarOpen]);
 
+    useEffect(() => {
+        setIsShop(pathname === '/shop');
+    }, [pathname]);
+
     return (
-        // Old nav styling:
-        // sticky top-4 lg:mr-16 lg:ml-16
         <nav className={"xl:pr-12 xl:pl-12 fixed top-0 w-full z-10"} id="nav-container">
             <div className={"flex justify-between font-bebas text-xl lg:text-3xl p-4"}>
 
@@ -49,15 +53,29 @@ export function NavBar({color}) {
                             </svg>
                         </div>
 
-                        {/* xl:hidden */}
-                        <ul className="flex flex-col gap-y-9 text-3xl">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Music</a></li>
-                            <li><a href="#">Tour</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <Link to='/shop'>Shop</Link>
-                        </ul>
+                        {isShop ? 
+                        (
+                            <ul className="flex flex-col gap-y-9 text-3xl">
+                                <Link to='/'>Home</Link>
+                                <Link to='/'>Music</Link>
+                                <Link to='/'>Tour</Link>
+                                <Link to='/'>About</Link>
+                                <Link to='/'>Contact</Link>
+                                <Link to='/shop'>Shop</Link>
+                            </ul>
+                        ) :
+
+                        (
+                            <ul className="flex flex-col gap-y-9 text-3xl">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Music</a></li>
+                                <li><a href="#">Tour</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <Link to='/shop'>Shop</Link>
+                            </ul>
+                        )}
+
                     </div>
                 </div>
 
