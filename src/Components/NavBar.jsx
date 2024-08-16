@@ -45,7 +45,7 @@ export function NavBar({color}) {
 
                 {/* Sidebar */}
                 <div onClick={toggleNav} id="sideBar" className={`fixed top-0 left-0 bg-transparent w-0 h-full overflow-x-hidden ${!isSideBarOpen ? 'duration-500' : 'duration-500 w-full'} z-10`}>
-                    <div id="sideNav" className={`fixed top-0 left-0 w-0 h-full flex justify-center items-center overflow-x-hidden ${!isSideBarOpen ? 'duration-500' : 'duration-500 w-1/2'} z-10 bg-white border-r-2 border-black`}>
+                    <div id="sideNav" className={`fixed top-0 left-0 w-0 h-full flex justify-center items-center overflow-x-hidden ${!isSideBarOpen ? 'duration-500 border-r-0' : 'duration-500 w-1/2 border-r-2'} z-10 bg-white border-black`}>
 
                         <div className="absolute top-4 left-4 ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" className="cursor-pointer">

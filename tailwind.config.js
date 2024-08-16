@@ -12,8 +12,8 @@ export default {
       },
       keyframes: {
         slideUp: {
-          '0%, 10%': {transform: 'translateY(70%)', opacity: '0'},
-          '30%, 100%': {transform: 'translateY(0)', opacity: '1'},
+          '0%, 50%': {transform: 'translateY(150%)', opacity: '0'},
+          '50%, 100%': {transform: 'translateY(0)', opacity: '1'},
         },
       },
       animation: {

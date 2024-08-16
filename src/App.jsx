@@ -51,7 +51,7 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className='relative' id='wrapper'>
+    <div className='relative scroll-smooth' id='wrapper'>
       <NavBar color={color}/>
 
       <Routes>
