@@ -22,6 +22,9 @@ export default {
       animation: {
         slowEase: 'slowEase 3.5s ease-in forwards',
       },
+      width: {
+        560: '35rem',
+      },
     },
     fontFamily: {
       bebas: ["Bebas Neue", "sans-serif"],
