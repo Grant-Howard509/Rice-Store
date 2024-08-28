@@ -16,17 +16,17 @@ const LandingPage = () => {
     return (
         <div className="font-rock_salt lg:bg-[url('/images/hero.jpeg')] bg-[url('/images/Ryan-RGL.jpeg')] bg-cover bg-center bg-fixed h-screen w-full text-white flex flex-col justify-between items-center">        
             <div className="flex flex-col justify-center items-center flex-grow">
-                <div className="overflow-hidden p-3">
-                    <h1 className="xl:text-8xl sm:text-7xl text-5xl">
+                <div className="overflow-hidden p-4">
+                    <h1 className="xl:text-9xl sm:text-7xl text-5xl">
                         <span className="block">
-                            <span className={`block w-full h-full ${isVisible ? 'animate-slideUp' : ''}`}>
+                            <span className={`block w-full h-full  ${isVisible ? 'animate-slowEase' : ''}`}>
                                 Slow Down
                             </span>
                         </span>
                     </h1>
                 </div>
 
-                <button className={`font-bebas w-44 bg-blue-500 text-2xl p-3 xl:mt-20 sm:mt-12 mt-8 rounded-sm transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+                <button className={`font-bebas w-44 xl:w-52 bg-blue-500 text-2xl xl:text-3xl p-4 xl:p-5 xl:mt-16 sm:mt-12 mt-8 rounded-sm transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
                     Listen Now
                 </button>
             </div>

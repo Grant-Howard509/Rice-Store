@@ -11,13 +11,16 @@ export default {
         'hero-mobile': "'url(/images/Ryan-RGL.jpeg)'"
       },
       keyframes: {
-        slideUp: {
-          '0%, 50%': {transform: 'translateY(150%)', opacity: '0'},
-          '50%, 100%': {transform: 'translateY(0)', opacity: '1'},
+        slowEase: {
+          // '0%, 10%': {transform: 'translateY(150%)', opacity: '1'},
+          // '25%, 100%': {transform: 'translateY(0)', opacity: '1'},
+
+          '0%, 10%': {opacity: '0'},
+          '25%, 100%': {opacity: '1'},
         },
       },
       animation: {
-        slideUp: 'slideUp 4s ease-in forwards',
+        slowEase: 'slowEase 3.5s ease-in forwards',
       },
     },
     fontFamily: {
