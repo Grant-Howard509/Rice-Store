@@ -8,7 +8,8 @@ export default {
     extend: {
       backgroundImage: {
         'hero-image': "'url(/images/hero.jpeg)'",
-        'hero-mobile': "'url(/images/Ryan-RGL.jpeg)'"
+        'hero-mobile': "'url(/images/Ryan-RGL.jpeg)'",
+        'album-bg': "'url(/images/Album.jpeg)'",
       },
       keyframes: {
         slowEase: {
@@ -25,6 +26,9 @@ export default {
       width: {
         560: '35rem',
       },
+      height: {
+        560: '35rem'
+      }
     },
     fontFamily: {
       bebas: ["Bebas Neue", "sans-serif"],
