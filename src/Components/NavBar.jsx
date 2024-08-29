@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 
-export function NavBar({color}) {
+export const NavBar = ({color}) => {
 
     const [isSideBarOpen, setSideBar] = useState(false);
     const location = useLocation();

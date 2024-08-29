@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const LandingPage = () => {
+export const LandingPage = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -44,5 +44,3 @@ const LandingPage = () => {
         </div>
     );
 }
-
-export default LandingPage;

@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 
-const Shop = forwardRef((props, ref) => {
+export const Shop = forwardRef((props, ref) => {
     return (
         <div className="flex justify-center flex-col items-center w-full h-screen bg-blue-800" ref={ref}>
                 <h1 className="text-center text-white">Coming Soon...</h1>
@@ -11,5 +11,3 @@ const Shop = forwardRef((props, ref) => {
         </div>
     );
 });
-
-export default Shop;

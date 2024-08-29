@@ -1,8 +1,8 @@
 import './index.css'
 import React, { useEffect, useRef, useState } from 'react';
 import  { NavBar } from './Components/NavBar'
-import Home  from './Components/Home'
-import Shop from './Components/Shop'
+import { Home }  from './Components/Home'
+import { Shop } from './Components/Shop'
 import { Route, Routes, useLocation} from 'react-router-dom'
 
 
@@ -10,18 +10,22 @@ export default function App() {
   const [color, setColor] = useState('text-white');
   const homeRef = useRef();
   const shopRef = useRef();
+  const releaseRef = useRef();
+  const landingPageRef = useRef();
   const location = useLocation();
-  let refList = [homeRef, shopRef];
+  let refList = [homeRef, shopRef, landingPageRef,releaseRef];
   
   useEffect(() => {
     const options = {
       root: null,
-      threshold: [0.03],
+      threshold: [.97],
     };
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if(!entry.isIntersecting) {
+        // Multiple entries possible solution:
+        // Use id's to detect section navBar color
+        if(entry.isIntersecting) {
           setColor('text-black');
         }else {
           setColor('text-white');
@@ -55,11 +59,9 @@ export default function App() {
       <NavBar color={color}/>
 
       <Routes>
-        <Route path='/' element={<Home ref={homeRef} key='home'/>} />
+        <Route path='/' element={<Home ref={homeRef} releaseRef={releaseRef} landingPageRef={landingPageRef} key='home'/>} />
         <Route path='/shop' element={<Shop ref={shopRef} key='shop'/>} />
       </Routes>
-
-      <section className='bg-white h-screen w-full p-50' id='test-section'></section>
     </div>
   )
 }
