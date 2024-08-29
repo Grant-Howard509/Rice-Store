@@ -25,7 +25,6 @@ export default function App() {
       entries.forEach(entry => {
         // Multiple entries possible solution:
         // Use id's to detect section navBar color
-        console.log(entry);
         if(entry.isIntersecting) {
           setColor('text-black');
         }else {
