@@ -20,13 +20,15 @@ export default function App() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > prevYPosition) {
-        setScrollDirection('down');
-      } else {
-        setScrollDirection('up');
-      }
 
-      setPrevYPosition(currentScrollY);
+        if (currentScrollY > prevYPosition + 5) {
+          setScrollDirection('down');
+        } else if (currentScrollY < prevYPosition - 5) {
+          setScrollDirection('up');
+        }
+
+        setPrevYPosition(currentScrollY);
+  
     }
 
     window.addEventListener('scroll', handleScroll);
@@ -40,6 +42,7 @@ export default function App() {
 
   const {ref: releaseObserverRef, inView: isReleaseView} = useInView({
     threshold: scrollDirection === 'down' && activeSection !== 'release'? 0.98 : 0,
+    triggerOnce: false,
     onChange: (inView) => {
       if (inView) setActiveSection('release');
     }
@@ -47,6 +50,7 @@ export default function App() {
 
   const {ref: landingObserverPageRef, inView: isLandingPageInView} = useInView({
     threshold: scrollDirection === 'down' && activeSection !== 'landingPage' ? 0.98 : 0,
+    triggerOnce: false,
     onChange: (inView) => {
       if (inView) setActiveSection('landingPage');
     }
@@ -54,6 +58,7 @@ export default function App() {
 
   const {ref: shopObserverRef, inView: isShopInView} = useInView({
     threshold: scrollDirection === 'down' && activeSection !== 'shop' ? 0.98 : 0,
+    triggerOnce: false,
     onChange: (inView) => {
       if (inView) setActiveSection('shop');
     }
@@ -64,8 +69,6 @@ export default function App() {
       setColor('text-black');
     } else if (activeSection === 'landingPage') {
       setColor('text-white');
-    } else if (activeSection === 'shop') {
-      setColor('text-green-500');
     }
   }, [activeSection, location.pathname, scrollDirection]);
 
@@ -77,8 +80,6 @@ export default function App() {
         <Route path='/' element={<Home ref={homeRef} releaseRef={releaseObserverRef} landingPageRef={landingObserverPageRef} key='home'/>} />
         <Route path='/shop' element={<Shop ref={shopObserverRef} key='shop'/>} />
       </Routes>
-
-      <section className='w-full h-screen'>he</section>
     </div>
   )
 }
