@@ -6,7 +6,7 @@ import { ReleaseSection } from "./ReleaseSection";
 export const Home = forwardRef(({releaseRef, landingPageRef}, ref) => {
     return (
         <div ref={ref}>
-            <LandingPage/>
+            <LandingPage ref={landingPageRef}/>
             <ReleaseSection ref={releaseRef}/>
         </div>
     );
